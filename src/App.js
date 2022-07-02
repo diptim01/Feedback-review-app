@@ -9,7 +9,7 @@ function App() {
   const [FeedBackItems, setFeedBackItems] = useState(FeedbackData);
   const deleteFeedback = (id) => {
     if (window.confirm("Are you sure you want to kill?")) {
-      setFeedBackItems(FeedBackItems.filter((item) => item.id != id));
+      setFeedBackItems(FeedBackItems.filter((item) => item.id !== id));
     }
   };
   return (

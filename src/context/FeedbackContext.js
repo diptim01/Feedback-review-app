@@ -28,6 +28,13 @@ export const FeedbackProvider = ({ children }) => {
     edit: false,
   });
 
+  //update feedbackitem
+  const updateFeedback = (id, updItem) => {
+    //is the id the same, do a clone update of what is in object array
+    setFeedback(
+      feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
+    );
+  };
 
   //delete feeback
   const deleteFeedback = (id) => {
@@ -39,10 +46,10 @@ export const FeedbackProvider = ({ children }) => {
   //set item to be updated
   const editFeedback = (item) => {
     setfeedbackEditState({
-        item,
-        edit : true
-    })
-  }
+      item,
+      edit: true,
+    });
+  };
 
   //add feedback
   const addFeedback = (newFeedback) => {
@@ -58,6 +65,7 @@ export const FeedbackProvider = ({ children }) => {
         addFeedback,
         editFeedback,
         feedbackEditState,
+        updateFeedback,
       }}
     >
       {children}

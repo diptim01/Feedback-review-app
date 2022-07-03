@@ -1,1 +1,1 @@
-https://62c10328af3c0000099194dd--taupe-pavlova-f742ce.netlify.app/
+https://62c18c555c0e210009095f05--taupe-pavlova-f742ce.netlify.app/

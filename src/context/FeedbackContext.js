@@ -18,7 +18,7 @@ export const FeedbackProvider = ({ children }) => {
 
   //fetch feedback
   const fetchFeedback = async () => {
-    const response = await fetch(`/feedback?_sort=id&_order=desc`);
+    const response = await fetch(`https://feedback-json-server-heroku.herokuapp.com/feedback?_sort=id&_order=desc`);
     const data = await response.json();
     setFeedback(data);
     setisLoading(false);
@@ -27,7 +27,7 @@ export const FeedbackProvider = ({ children }) => {
   //update feedbackitem
   const updateFeedback = async (id, updItem) => {
     //is the id the same, do a clone update of what is in object array
-    const response = await fetch(`/feedback/${id}`, {
+    const response = await fetch(`https://feedback-json-server-heroku.herokuapp.com/feedback/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export const FeedbackProvider = ({ children }) => {
   //delete feeback
   const deleteFeedback = async (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      await fetch(`/feedback/${id}`, {
+      await fetch(`https://feedback-json-server-heroku.herokuapp.com/feedback/${id}`, {
         method: "DELETE",
       });
       setFeedback(feedback.filter((item) => item.id !== id));
@@ -61,7 +61,7 @@ export const FeedbackProvider = ({ children }) => {
 
   //add feedback
   const addFeedback = async (newFeedback) => {
-    const response = await fetch("/feedback", {
+    const response = await fetch("https://feedback-json-server-heroku.herokuapp.com/feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

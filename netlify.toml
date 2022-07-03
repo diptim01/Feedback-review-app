@@ -1,3 +1,3 @@
 [[redirects]]
 from = "/feedback"
-to = "https://feedback-json-server-heroku.herokuapp.com"
+to = "https://feedback-json-server-heroku.herokuapp.com/feedback"

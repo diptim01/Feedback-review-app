@@ -40,7 +40,7 @@ export const FeedbackProvider = ({ children }) => {
       feedback.map((item) => (item.id === id ? { ...item, ...data } : item))
     );
 
-    setFeedbackEdit({
+    setfeedbackEditState({
       item: {},
       edit: false,
     })

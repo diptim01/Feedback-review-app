@@ -7,11 +7,10 @@ import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackForm() {
   const [text, setText] = useState("");
-  const [rating, setRating] = useState(10);
+  const [rating, setRating] = useState(null);
   const [btnDisabled, setbtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
-  const { addFeedback, feedbackEditState, updateFeedback } =
-    useContext(FeedbackContext);
+  const { addFeedback, feedbackEditState, updateFeedback } = useContext(FeedbackContext);
 
   useEffect(() => {
     if (feedbackEditState.edit) {
@@ -21,28 +20,38 @@ function FeedbackForm() {
     }
   }, [feedbackEditState]);
 
-  const handleTextChange = ({ target: { value } }) => {
-    if (value === "") {
+  useEffect(() => {
+    console.log(rating)
+
+    if (text === "") {
       setbtnDisabled(true);
       setMessage(null);
-    } else if (value !== "" && value.trim().length < 10) {
+    }
+    else if (text !== "" && text.trim().length < 10) {
       setbtnDisabled(true);
       setMessage("text must be at least 10 charaters");
-    } else {
+    }
+    else if (!rating && text !== "" && text.trim().length >= 10) {
+      setbtnDisabled(true);
+      setMessage("you must to chose rating");
+    }
+    else {
       setbtnDisabled(false);
       setMessage(null);
     }
 
-    setText(value);
-  };
+    setRating(rating)
+    setText(text);
+  }, [rating, text])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (text.trim().length >= 10) {
+    if (text.trim().length >= 10 && rating !== null) {
       const newFeedback = {
         text,
-        rating,
+        rating
       };
 
       if (feedbackEditState.edit) {
@@ -62,7 +71,7 @@ function FeedbackForm() {
         <RatingSelect select={(rating) => setRating(rating)} />
         <div className="input-group">
           <input
-            onChange={handleTextChange}
+            onChange={(e) => setText(e.target.value)}
             type="text"
             placeholder="write a review"
             value={text}
